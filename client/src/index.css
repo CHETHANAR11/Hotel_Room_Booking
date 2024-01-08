@@ -9,10 +9,12 @@
 
 /* my-margin py-padding */
 
-input[type="email"],input[type="password"],input[type="text"]{
-    @apply w-full border my-2 py-2 px-3 rounded-2xl;
+input[type="email"],input[type="password"]
+,input[type="text"],input[type="number"],
+    textarea{
+        @apply w-full border my-2 py-2 px-3 rounded-2xl;
 
-}
+    }
 
 button{
     @apply bg-gray-300;
