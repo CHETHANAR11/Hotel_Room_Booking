@@ -7,7 +7,6 @@ import { Navigate, useParams } from 'react-router-dom';
 
 export default function PlacesFormPage(){
     const {id} = useParams();
-    console.log({id});
     const [title,setTitle]=useState('');
     const [address,setAddress]=useState('');
     const [pic,setPic]=useState([]);
@@ -17,7 +16,9 @@ export default function PlacesFormPage(){
     const [checkIn,setCheckIn]=useState('');
     const [checkOut,setCheckOut]=useState('');
     const [maxGuests,setMaxGuests]=useState(1);
+    const [price,setPrice] = useState(1000);
     const [redirect,setRedirect] = useState(false);
+
 
     useEffect(()=>{
       if(!id){
@@ -34,6 +35,7 @@ export default function PlacesFormPage(){
          setCheckIn(data.checkIn);
          setCheckOut(data.checkOut);
          setMaxGuests(data.maxGuests);
+         setPrice(data.price);
 
       })
     },[id]);
@@ -64,7 +66,7 @@ export default function PlacesFormPage(){
          const placeData={
           title,address,pic,
           description,perks,extraInfo,
-          checkIn,checkOut,maxGuests
+          checkIn,checkOut,maxGuests,price,
 
          };
         if(id){
@@ -112,7 +114,7 @@ export default function PlacesFormPage(){
            <h2 className="text-xl mt-4">Check in&out times,max guests</h2>
            <p className="text-gray-500 text-sm">add check in and out times,remember to have some time window for cleaning the room between guests</p>
 
-           <div className="grid sm:grid-cols-3 mt-2">
+           <div className="grid gap-2 grid-cols-2 mt-2 md:grid-cols-4">
              <div>
                 <h3 className="mt-2 -mb-1">Check in time</h3>
                 <input type="text" value={checkIn} 
@@ -131,6 +133,13 @@ export default function PlacesFormPage(){
                 onChange={ev => setMaxGuests(ev.target.value)}
                 placeholder="11"/>
              </div>
+             <div>
+                <h3 className="mt-2 -mb-1">Price per Night</h3>
+                <input type="text" value={price} 
+                onChange={ev => setPrice(ev.target.value)}
+                placeholder="price"/>
+             </div>
+             
            </div>
 
            <div>
